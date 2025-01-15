@@ -1,0 +1,78 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: "poppins", serif; */
+}
+body {
+    font-family: "Nunito", serif;
+}
+
+.first-head {
+    background-color: #ebeef6;
+    display: flex;
+    padding: 0.9rem 5rem;
+    justify-content: space-between;
+    align-items: center;
+}
+.contact {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.phone,
+.mail {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    border-right: 1px solid #1e1e1e;
+    padding-right: 0.5rem;
+}
+.phone:hover,
+.mail:hover {
+    color: #007bdf;
+    cursor: pointer;
+}
+.phone img,
+.mail img {
+    width: 2em;
+    margin-right: 0.5em;
+}
+.media {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+}
+.media img {
+    width: 1.2em;
+    cursor: pointer;
+    filter: grayscale(100%);
+    transition: all 0.5s ease-in-out;
+    filter: brightness(0) saturate(100%) invert(0) sepia(0) hue-rotate(0deg)
+        saturate(1);
+}
+.media img:hover {
+    filter: grayscale(0%);
+    /* background-color: blue; */
+    filter: brightness(0) saturate(100%) invert(0.5) sepia(1) hue-rotate(200deg)
+        saturate(2);
+}
+.media button {
+    border: none;
+    border-right: 1px solid #1e1e1e;
+    padding-right: 0.5rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+.media button:hover {
+    color: #007bdf;
+}
+@media screen and (max-width: 1000px) {
+    .first-head {
+        display: none;
+    }
+}
