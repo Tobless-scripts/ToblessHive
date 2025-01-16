@@ -1,20 +1,9 @@
-function showSideBar() {
-    const sidebar = document.querySelector(".container");
-    sidebar.style.display = "flex";
-    sidebar.style.transition = "all 3s ease-in-out";
-}
+import { fetchVideos as fetchVideoData } from "./video.js";
+import { fetchVideos as fetchTrendingVideos } from "./trending.js";
+import { fetchVideos as fetchPopularVideos } from "./popular.js";
+import { fetchVideos as fetchFeaturedVideos } from "./featured.js";
 
-function hideSideBar() {
-    const sidebar = document.querySelector(".container");
-    sidebar.style.display = "none";
-    document.querySelector(".content").classList.remove("blurred");
-}
-
-window.onscroll = function () {
-    var header = document.querySelector(".fixed");
-    if (window.scrollY > 30) {
-        header.classList.add("sticky");
-    } else {
-        header.classList.remove("sticky");
-    }
-};
+fetchVideoData();
+fetchTrendingVideos();
+fetchPopularVideos();
+fetchFeaturedVideos();
