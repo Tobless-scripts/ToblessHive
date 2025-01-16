@@ -36,28 +36,14 @@
             content="ToblessHive is an educational platform where you can explore various courses and learn new skills across different domains."
         />
         <meta name="twitter:url" content="https://www.yourwebsiteurl.com" />
-        <meta
-            name="twitter:image"
-            content="https://www.yourwebsiteurl.com/your-image.jpg"
-        />
+        <meta name="twitter:image" content="/MEDIA/logo.png" />
 
         <!-- Favicons -->
-        <link
-            rel="icon"
-            href="https://www.yourwebsiteurl.com/favicon.ico"
-            type="image/x-icon"
-        />
-        <link
-            rel="icon"
-            href="https://www.yourwebsiteurl.com/favicon.png"
-            type="image/png"
-        />
+        <link rel="icon" href="/MEDIA/logo.png" type="image/x-icon" />
+        <link rel="icon" href="/MEDIA/logo.png" type="image/png" />
 
         <!-- Apple Touch Icon -->
-        <link
-            rel="apple-touch-icon"
-            href="https://www.yourwebsiteurl.com/apple-touch-icon.png"
-        />
+        <link rel="apple-touch-icon" href="/MEDIA/logo.png" />
 
         <!-- Manifest for Web App -->
         <link rel="manifest" href="manifest.json" />
@@ -85,6 +71,127 @@
                 <img src="/MEDIA/linkedIn.png" alt="linkedIn" />
             </span>
         </div>
+
+        <header>
+            <div class="fixed">
+                <img src="/MEDIA/logo.png" alt="logo" class="logo" />
+
+                <div class="ulcont">
+                    <ul class="hide">
+                        <li class="hide active">
+                            <a href="index.html">Home</a>
+                        </li>
+                        <li class="hide">
+                            <a href="/HTML/service.html">Courses</a>
+                        </li>
+                        <li class="hide"><a href="/HTML/blog.html">Blog</a></li>
+                        <li class="hide">
+                            <a href="/HTML/shop.html">Features</a>
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <i onclick="showSideBar()" id="menu">
+                            <a href="#">
+                                <img
+                                    src="/media/menu.png"
+                                    alt="menu"
+                                    height="26"
+                                    viewBox="0 96 960 960"
+                                    width="30"
+                            /></a>
+                        </i>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container">
+                <ul>
+                    <i onclick="hideSideBar()" class="active">
+                        <img
+                            src="/media/close_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg"
+                            alt="close"
+                            height="30"
+                            viewBox="0 96 960 960"
+                            width="30"
+                            id="hide"
+                        />
+                    </i>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="/HTML/service.html">Courses</a></li>
+                    <li><a href="/HTML/blog.html">Blog</a></li>
+                    <li><a href="feature.html">Features</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <main>
+            <div class="hero-section">
+                <h1>Learn Something <span>New</span> Today</h1>
+                <img
+                    src="/MEDIA/girl1.webp"
+                    alt="hero-section-img1"
+                    class="hero-img1"
+                />
+                <img
+                    src="/MEDIA/girl2.webp"
+                    alt="hero-section-img2"
+                    class="hero-img2"
+                />
+                <img
+                    src="/MEDIA/girl3.webp"
+                    alt="hero-section-img3"
+                    class="hero-img3"
+                />
+                <input
+                    type="text"
+                    name="course"
+                    id="course"
+                    placeholder="What do you want to learn"
+                />
+                <div class="hero-section-child">
+                    <span class="child">
+                        <img src="/MEDIA/course.png" alt="course overview" />
+                        <h2>6,000 Online Courses</h2>
+                        <p>Explore wide-range of online courses</p>
+                    </span>
+                    <span class="child">
+                        <img src="/MEDIA/star.png" alt="course overview" />
+                        <h2>Top Instructors</h2>
+                        <p>Learn from the best experts of the subjects</p>
+                    </span>
+                    <span class="child">
+                        <img src="/MEDIA/clock.png" alt="course overview" />
+                        <h2>Portable Programs</h2>
+                        <p>Allow you to learn anywhere, anytime</p>
+                    </span>
+                </div>
+                <div class="fixed-bar">
+                    <span>
+                        <p>Whatsapp</p>
+                        <a
+                            href="https://wa.me/2347048578739
+                            "
+                            ><img
+                                src="/MEDIA/whatsapp-icon.EkoMrkNv.png"
+                                alt="whatsapp"
+                        /></a>
+                    </span>
+                    <span>
+                        <p>Twitter</p>
+                        <a href="https://x.com/ObayomiTaofeek"
+                            ><img src="/MEDIA/twitter.png" alt="twitter"
+                        /></a>
+                    </span>
+                    <span>
+                        <p>Github</p>
+                        <a href="https://github.com/Tobless-scripts"
+                            ><img src="/MEDIA/github.png" alt="github"
+                        /></a>
+                    </span>
+                </div>
+            </div>
+        </main>
     </body>
     <script src="/JAVASCRIPT/script.js"></script>
 </html>
