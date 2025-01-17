@@ -13,7 +13,7 @@ export async function fetchVideos() {
         const data = await response.json();
         displayVideos(data.items);
     } catch (error) {
-        console.error("Error fetching videos:", error);
+        console.error("Error fetching videos:", error.message);
     }
 }
 

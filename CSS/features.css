@@ -1,0 +1,296 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* font-family: "poppins", serif; */
+}
+body {
+    font-family: "Nunito", serif;
+}
+
+.first-head {
+    background-color: #ebeef6;
+    display: flex;
+    padding: 0.9rem 5rem;
+    justify-content: space-between;
+    align-items: center;
+}
+.contact {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.phone,
+.mail {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    border-right: 1px solid #1e1e1e;
+    padding-right: 0.5rem;
+}
+.phone:hover,
+.mail:hover {
+    color: #007bdf;
+    cursor: pointer;
+}
+.phone img,
+.mail img {
+    width: 2em;
+    margin-right: 0.5em;
+}
+.media {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 1rem;
+}
+.media img {
+    width: 1.2em;
+    cursor: pointer;
+    filter: grayscale(100%);
+    transition: all 0.5s ease-in-out;
+    filter: brightness(0) saturate(100%) invert(0) sepia(0) hue-rotate(0deg)
+        saturate(1);
+}
+.media img:hover {
+    filter: grayscale(0%);
+    /* background-color: blue; */
+    filter: brightness(0) saturate(100%) invert(0.5) sepia(1) hue-rotate(200deg)
+        saturate(2);
+}
+.media button {
+    border: none;
+    border-right: 1px solid #1e1e1e;
+    padding-right: 0.5rem;
+    background-color: transparent;
+    cursor: pointer;
+}
+.media button:hover {
+    color: #007bdf;
+}
+@media screen and (max-width: 1000px) {
+    .first-head {
+        display: none;
+    }
+}
+
+.logo {
+    width: 5em;
+    /* border-radius: 50%; */
+}
+header {
+    padding: 1vw 2vw;
+    display: flex;
+    justify-content: space-between;
+    border: 0;
+    border-color: #e6e6e6;
+    background: #f5f7fd;
+    word-wrap: break-word;
+    word-break: break-word;
+    height: 9em;
+    position: relative;
+}
+@media screen and (max-width: 1000px) {
+    .logo {
+        width: 5em;
+    }
+    header {
+        padding: 1vw 2vw;
+        height: 5em;
+    }
+}
+.fixed {
+    position: fixed;
+    width: 100%;
+    padding: 1rem 4rem;
+    display: flex;
+    align-items: center;
+    margin-top: 0;
+    margin-left: 0;
+    justify-content: space-between;
+    z-index: 999;
+    align-self: flex-start;
+}
+.fixed.sticky {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background-color: #ebeef6;
+    transition: all 1.5s ease-in-out;
+    padding: 1rem 5rem;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+}
+.ulcont {
+    display: flex;
+    align-items: center;
+    filter: none;
+    margin: 0 3vw;
+}
+ul {
+    display: flex;
+    justify-content: space-between;
+    gap: 3vw;
+    list-style: none;
+}
+#menu {
+    width: 3em;
+    cursor: pointer;
+}
+ul li a {
+    color: #4a5f79;
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+    transition: all 0.5s ease-in-out;
+}
+ul li a:hover {
+    color: #007bdf;
+}
+@media screen and (max-width: 1240px) {
+    ul li a {
+        font-size: 1em;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .fixed {
+        background-color: #007bdf;
+        margin: 0;
+    }
+    .fixed.sticky {
+        background-color: #007bdf;
+        padding: 1rem;
+    }
+    header {
+        padding: 0;
+    }
+    ul li a {
+        font-size: 1.5em;
+    }
+    .cart,
+    .search {
+        margin-right: 0.5em;
+        margin-left: 0.5em;
+    }
+}
+.container {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 80%;
+    box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+    background-image: url("/MEDIA/background-image.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0 1rem;
+    transition: all 5s ease-in-out;
+}
+.container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: inherit;
+    filter: brightness(0.3);
+    z-index: 0;
+}
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+.container ul {
+    display: flex;
+    flex-direction: column;
+    margin: 2em 0;
+    gap: 1.5em;
+    width: 100%;
+    z-index: 1005;
+    position: relative;
+}
+.container ul li {
+    width: 100%;
+    padding: 2vw;
+    z-index: 1005;
+}
+.container ul li a {
+    width: 100%;
+    color: white;
+    z-index: 1005;
+    border-bottom: 1px solid white;
+}
+.container ul li a:hover {
+    color: #007bdf;
+    border-bottom: 1px solid #007bdf;
+}
+.active {
+    cursor: pointer;
+}
+@media screen and (min-width: 1001px) {
+    #menu {
+        display: none;
+    }
+}
+@media screen and (max-width: 1000px) {
+    .fixed {
+        position: fixed;
+        margin-top: 0;
+        width: 100%;
+        padding: 5vw;
+        border-bottom: 1px solid white;
+    }
+    .hide {
+        display: none;
+    }
+    main {
+        margin-top: 10vw;
+    }
+}
+.copy {
+    background-color: #f5f5f5;
+    padding: 3rem 5rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+    color: #031f42;
+}
+.copy p {
+    color: #031f42;
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 20px;
+}
+.copyLink ul li a:hover {
+    color: #007bdf;
+    border: none;
+}
+
+@media screen and (max-width: 1000px) {
+    .copy {
+        text-align: center;
+        display: block;
+        padding: 3rem 1rem;
+        text-align: left;
+    }
+}

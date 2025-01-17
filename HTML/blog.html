@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="/CSS/blog.css" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <div class="first-head">
+            <span class="contact">
+                <span class="phone">
+                    <img src="/MEDIA/telephone.png" alt="telephone" />
+                    <p>(+234)704 857 8739</p>
+                </span>
+                <span class="mail">
+                    <img src="/MEDIA/mail.png" alt="mail" />
+                    <p>obayomitaofeek7@gmail.com</p>
+                </span>
+            </span>
+            <span class="media">
+                <button>Log in</button>
+                <button>Register</button>
+                <img src="/MEDIA/twitter.png" alt="twitter" />
+                <img src="/MEDIA/facebook (2).png" alt="facebook" />
+                <img src="/MEDIA/instagram.png" alt="instagram" />
+                <img src="/MEDIA/linkedIn.png" alt="linkedIn" />
+            </span>
+        </div>
+
+        <header>
+            <div class="fixed">
+                <img src="/MEDIA/logo.png" alt="logo" class="logo" />
+
+                <div class="ulcont">
+                    <ul class="hide">
+                        <li class="hide active">
+                            <a href="/index.html">Home</a>
+                        </li>
+                        <li class="hide">
+                            <a href="/HTML/courses.html">Courses</a>
+                        </li>
+                        <li class="hide"><a href="/HTML/blog.html">Blog</a></li>
+                        <li class="hide">
+                            <a href="/HTML/features.html">Features</a>
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <i onclick="showSideBar()" id="menu">
+                            <a href="#">
+                                <img
+                                    src="/MEDIA/menu.png"
+                                    alt="menu"
+                                    height="26"
+                                    viewBox="0 96 960 960"
+                                    width="30"
+                            /></a>
+                        </i>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="container">
+                <ul>
+                    <i onclick="hideSideBar()" class="active">
+                        <img
+                            src="/MEDIA/close_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.svg"
+                            alt="close"
+                            height="30"
+                            viewBox="0 96 960 960"
+                            width="30"
+                            id="hide"
+                        />
+                    </i>
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/HTML/service.html">Courses</a></li>
+                    <li><a href="/HTML/blog.html">Blog</a></li>
+                    <li><a href="/HTML/features.html">Features</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <footer>
+            <div class="copy">
+                <p>Copyright &copy; 2024 Logisco</p>
+                <div class="copyLink">
+                    <ul>
+                        <li>
+                            <a href="/index.html">Home</a>
+                        </li>
+                        <li>
+                            <a href="/HTML/courses.html">Courses</a>
+                        </li>
+                        <li>
+                            <a href="/HTML/blog.html">Blog</a>
+                        </li>
+                        <li>
+                            <a href="/HTML/features.html">Features</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+    </body>
+    <script>
+        function showSideBar() {
+            const sidebar = document.querySelector(".container");
+            sidebar.style.display = "flex";
+            sidebar.style.transition = "all 3s ease-in-out";
+        }
+
+        function hideSideBar() {
+            const sidebar = document.querySelector(".container");
+            sidebar.style.display = "none";
+            document.querySelector(".content").classList.remove("blurred");
+        }
+    </script>
+</html>
