@@ -2,9 +2,16 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" href="/CSS/blog.css" />
+        <link rel="stylesheet" href="/CSS/courses.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <!-- Favicons -->
+        <link rel="icon" href="/MEDIA/logo.png" type="image/x-icon" />
+        <link rel="icon" href="/MEDIA/logo.png" type="image/png" />
+
+        <!-- Apple Touch Icon -->
+        <link rel="apple-touch-icon" href="/MEDIA/logo.png" />
+
+        <title>ToblessHive</title>
     </head>
     <body>
         <div class="first-head">
@@ -81,6 +88,65 @@
             </div>
         </header>
 
+        <main>
+            <div class="hero-section">
+                <h1>Learn Something <span>New</span> Today</h1>
+                <input
+                    type="text"
+                    name="course"
+                    id="course-query"
+                    placeholder="What do you want to learn"
+                />
+                <button id="change-query">Search</button>
+                <div class="fixed-bar">
+                    <span>
+                        <p>Whatsapp</p>
+                        <a
+                            href="https://wa.me/2347048578739
+                            "
+                            ><img
+                                src="/MEDIA/whatsapp-icon.EkoMrkNv.png"
+                                alt="whatsapp"
+                        /></a>
+                    </span>
+                    <span>
+                        <p>Twitter</p>
+                        <a href="https://x.com/ObayomiTaofeek"
+                            ><img src="/MEDIA/twitter.png" alt="twitter"
+                        /></a>
+                    </span>
+                    <span>
+                        <p>Github</p>
+                        <a href="https://github.com/Tobless-scripts"
+                            ><img src="/MEDIA/github.png" alt="github"
+                        /></a>
+                    </span>
+                </div>
+            </div>
+            <div class="general-course">
+                <section class="general">
+                    <h2>Most Popular</h2>
+                    <div id="video-container" class="containers section"></div>
+                </section>
+                <section class="ai-ml">
+                    <h2>AI/ML</h2>
+                    <div id="trending-video" class="containers section"></div>
+                </section>
+                <section class="web-development">
+                    <h2>Web Development</h2>
+                    <div id="popular-video" class="containers section"></div>
+                </section>
+                <section class="tech">
+                    <h2>Technology</h2>
+                    <div id="featured-video" class="containers section"></div>
+                </section>
+                <section class="ui-ux">
+                    <h2>Ui/UX Designing</h2>
+                    <div id="design-video" class="containers section"></div>
+                </section>
+            </div>
+        </main>
+
         <footer>
             <div class="copy">
                 <p>Copyright &copy; 2024 Logisco</p>
@@ -103,6 +169,9 @@
             </div>
         </footer>
     </body>
+
+    <script type="module" src="/JAVASCRIPT/script.js"></script>
+
     <script>
         function showSideBar() {
             const sidebar = document.querySelector(".container");
@@ -115,5 +184,23 @@
             sidebar.style.display = "none";
             document.querySelector(".content").classList.remove("blurred");
         }
+
+        window.onscroll = function () {
+            var header = document.querySelector(".fixed");
+            if (window.scrollY > 30) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        };
+
+        const newQuery = document.getElementById("course-query");
+        const changeButton = document.getElementById("change-query");
+        const generalCourse = document.querySelector(".general-course");
+        const videoElement = document.querySelector(".video");
+        changeButton.addEventListener("click", () => {
+            query = newQuery.value;
+            generalCourse.innerHTML = videoElement.innerHTML;
+        });
     </script>
 </html>

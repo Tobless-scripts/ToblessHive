@@ -2,9 +2,16 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <link rel="stylesheet" href="/CSS/blog.css" />
+        <link rel="stylesheet" href="/CSS/features.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <!-- Favicons -->
+        <link rel="icon" href="/MEDIA/logo.png" type="image/x-icon" />
+        <link rel="icon" href="/MEDIA/logo.png" type="image/png" />
+
+        <!-- Apple Touch Icon -->
+        <link rel="apple-touch-icon" href="/MEDIA/logo.png" />
+
+        <title>ToblessHive</title>
     </head>
     <body>
         <div class="first-head">
@@ -81,6 +88,85 @@
             </div>
         </header>
 
+        <main>
+            <div class="hero-section">
+                <h1>Learn Something <span>New</span> Today</h1>
+                <div class="fixed-bar">
+                    <span>
+                        <p>Whatsapp</p>
+                        <a
+                            href="https://wa.me/2347048578739
+                            "
+                            ><img
+                                src="/MEDIA/whatsapp-icon.EkoMrkNv.png"
+                                alt="whatsapp"
+                        /></a>
+                    </span>
+                    <span>
+                        <p>Twitter</p>
+                        <a href="https://x.com/ObayomiTaofeek"
+                            ><img src="/MEDIA/twitter.png" alt="twitter"
+                        /></a>
+                    </span>
+                    <span>
+                        <p>Github</p>
+                        <a href="https://github.com/Tobless-scripts"
+                            ><img src="/MEDIA/github.png" alt="github"
+                        /></a>
+                    </span>
+                </div>
+            </div>
+            <section class="features">
+                <div class="feature">
+                    <img
+                        src="/MEDIA/learning-paths.png"
+                        alt="Personalized Learning"
+                    />
+                    <h3>Personalized Learning Paths</h3>
+                    <p>
+                        Tailored courses that fit your unique skillset and
+                        goals.
+                    </p>
+                </div>
+                <div class="feature">
+                    <img src="/MEDIA/quiz.png" alt="Interactive Tools" />
+                    <h3>Interactive Tools</h3>
+                    <p>
+                        Quizzes, projects, and assignments to solidify learning.
+                    </p>
+                </div>
+                <div class="feature">
+                    <img
+                        src="/MEDIA/counter-media-02.webp"
+                        alt="Certifications"
+                    />
+                    <h3>Certifications</h3>
+                    <p>Earn certificates to showcase your achievements.</p>
+                </div>
+                <div class="feature">
+                    <img src="/MEDIA/community.png" alt="Community" />
+                    <h3>Community Engagement</h3>
+                    <p>Collaborate with like-minded learners worldwide.</p>
+                </div>
+                <div class="feature">
+                    <img
+                        src="/MEDIA/counter-media-04.webp"
+                        alt="Multi-Platform"
+                    />
+                    <h3>Multi-Platform Access</h3>
+                    <p>
+                        Learn anytime, anywhere with seamless device
+                        compatibility.
+                    </p>
+                </div>
+                <div class="feature">
+                    <img src="/MEDIA/gamification.png" alt="Gamification" />
+                    <h3>Gamification</h3>
+                    <p>Earn badges and points to make learning fun!</p>
+                </div>
+            </section>
+        </main>
+
         <footer>
             <div class="copy">
                 <p>Copyright &copy; 2024 Logisco</p>
@@ -115,5 +201,14 @@
             sidebar.style.display = "none";
             document.querySelector(".content").classList.remove("blurred");
         }
+
+        window.onscroll = function () {
+            var header = document.querySelector(".fixed");
+            if (window.scrollY > 30) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        };
     </script>
 </html>

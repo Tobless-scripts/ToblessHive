@@ -4,7 +4,14 @@
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="/CSS/blog.css" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <!-- Favicons -->
+        <link rel="icon" href="/MEDIA/logo.png" type="image/x-icon" />
+        <link rel="icon" href="/MEDIA/logo.png" type="image/png" />
+
+        <!-- Apple Touch Icon -->
+        <link rel="apple-touch-icon" href="/MEDIA/logo.png" />
+
+        <title>ToblessHive</title>
     </head>
     <body>
         <div class="first-head">
@@ -115,5 +122,14 @@
             sidebar.style.display = "none";
             document.querySelector(".content").classList.remove("blurred");
         }
+
+        window.onscroll = function () {
+            var header = document.querySelector(".fixed");
+            if (window.scrollY > 30) {
+                header.classList.add("sticky");
+            } else {
+                header.classList.remove("sticky");
+            }
+        };
     </script>
 </html>

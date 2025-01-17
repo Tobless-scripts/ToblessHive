@@ -293,4 +293,10 @@ ul li a:hover {
         padding: 3rem 1rem;
         text-align: left;
     }
+    .copyLink ul {
+        margin-top: 1rem;
+    }
+    .copyLink ul li a {
+        font-size: 1rem;
+    }
 }

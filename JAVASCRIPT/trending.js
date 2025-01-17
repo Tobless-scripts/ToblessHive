@@ -1,4 +1,4 @@
-const apiKey = "AIzaSyA3yzFvSDuUaUCe6oHSug0i1fZWvbBBJcM";
+const apiKey = "AIzaSyANlcpM94oqiopnHzc2zpri4S9dCFPUH0Y";
 const query = "AI/ML";
 const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&q=${encodeURIComponent(
     query

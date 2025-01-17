@@ -1,5 +1,5 @@
-const apiKey = "AIzaSyA3yzFvSDuUaUCe6oHSug0i1fZWvbBBJcM";
-const query = "Tech Development, fullstack & Design";
+const apiKey = "AIzaSyANlcpM94oqiopnHzc2zpri4S9dCFPUH0Y";
+let query = "Tech Development, fullstack & Design";
 const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&q=${encodeURIComponent(
     query
 )}&part=snippet&type=video&maxResults=12`;
