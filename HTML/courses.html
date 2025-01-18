@@ -81,7 +81,7 @@
                         />
                     </i>
                     <li><a href="/index.html">Home</a></li>
-                    <li><a href="/HTML/service.html">Courses</a></li>
+                    <li><a href="/HTML/courses.html">Courses</a></li>
                     <li><a href="/HTML/blog.html">Blog</a></li>
                     <li><a href="/HTML/features.html">Features</a></li>
                 </ul>
@@ -172,35 +172,7 @@
 
     <script type="module" src="/JAVASCRIPT/script.js"></script>
 
-    <script>
-        function showSideBar() {
-            const sidebar = document.querySelector(".container");
-            sidebar.style.display = "flex";
-            sidebar.style.transition = "all 3s ease-in-out";
-        }
+    <script src="/JAVASCRIPT/header.js"></script>
 
-        function hideSideBar() {
-            const sidebar = document.querySelector(".container");
-            sidebar.style.display = "none";
-            document.querySelector(".content").classList.remove("blurred");
-        }
-
-        window.onscroll = function () {
-            var header = document.querySelector(".fixed");
-            if (window.scrollY > 30) {
-                header.classList.add("sticky");
-            } else {
-                header.classList.remove("sticky");
-            }
-        };
-
-        const newQuery = document.getElementById("course-query");
-        const changeButton = document.getElementById("change-query");
-        const generalCourse = document.querySelector(".general-course");
-        const videoElement = document.querySelector(".video");
-        changeButton.addEventListener("click", () => {
-            query = newQuery.value;
-            generalCourse.innerHTML = videoElement.innerHTML;
-        });
-    </script>
+    <script src="/JAVASCRIPT/newQuery.js"></script>
 </html>

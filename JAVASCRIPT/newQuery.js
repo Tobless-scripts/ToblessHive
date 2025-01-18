@@ -1,5 +1,5 @@
 const apiKey = "AIzaSyANlcpM94oqiopnHzc2zpri4S9dCFPUH0Y";
-let query = "Tech Development, fullstack & Design";
+let query = document.getElementById("course-query").value;
 const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&q=${encodeURIComponent(
     query
 )}&part=snippet&type=video&maxResults=12`;
@@ -7,7 +7,7 @@ const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&q=${e
 let currentIframe = null;
 let currentThumbnail = null;
 
-export async function fetchVideos() {
+async function fetchVideos() {
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
@@ -17,7 +17,7 @@ export async function fetchVideos() {
     }
 }
 
-export function displayVideos(videos) {
+function displayVideos(videos) {
     const container = document.getElementById("video-container");
     container.innerHTML = "";
 
@@ -25,21 +25,21 @@ export function displayVideos(videos) {
         const videoElement = document.createElement("div");
         videoElement.className = "video";
         videoElement.innerHTML = `
-            <img src="${
-                video.snippet.thumbnails.high.url
-            }" class="thumbnail" alt="${video.snippet.title}">
-            <iframe
-                src="https://www.youtube.com/embed/${
-                    video.id.videoId
-                }?autoplay=1" <!-- No mute by default -->
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen>
-            </iframe>
-  ${
-      video.snippet.title.split(" ").slice(0, 10).join(" ") +
-      (video.snippet.title.split(" ").length > 10 ? "..." : "")
-  }
-        `;
+          <img src="${
+              video.snippet.thumbnails.high.url
+          }" class="thumbnail" alt="${video.snippet.title}">
+          <iframe
+              src="https://www.youtube.com/embed/${
+                  video.id.videoId
+              }?autoplay=1" <!-- No mute by default -->
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen>
+          </iframe>
+${
+    video.snippet.title.split(" ").slice(0, 10).join(" ") +
+    (video.snippet.title.split(" ").length > 10 ? "..." : "")
+}
+      `;
 
         // Add click event listener to replace the thumbnail with the iframe
         const thumbnail = videoElement.querySelector(".thumbnail");
@@ -62,3 +62,23 @@ export function displayVideos(videos) {
         container.appendChild(videoElement);
     });
 }
+
+const changeButton = document.getElementById("change-query");
+const generalCourse = document.querySelector(".general-course");
+const videoElement = document.querySelector(".video");
+changeButton.addEventListener("click", () => {
+    query = newQuery.value;
+    console.log("Clicked!");
+    generalCourse.innerHTML = videoElement;
+    query.value = "";
+});
+
+const scrollBar = document.querySelector(".section");
+const SCROLL_SPEED = 0.1;
+scrollBar.addEventListener("wheel", (event) => {
+    event.preventDefault();
+    scrollBar.scrollBy({
+        top: event.deltaY * SCROLL_SPEED,
+        behavior: "smooth",
+    });
+});
