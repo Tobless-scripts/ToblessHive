@@ -7,13 +7,33 @@ if ("serviceWorker" in navigator) {
                     "Service Worker registered with scope:",
                     registration.scope
                 );
-            })
-            .catch((error) => {
-                console.log("Service Worker registration failed:", error);
+
+                registration.onupdatefound = () => {
+                    const installingWorker = registration.installing;
+                    installingWorker.onstatechange = () => {
+                        if (installingWorker.state === "installed") {
+                            if (navigator.serviceWorker.controller) {
+                                // New update available
+                                console.log(
+                                    "New content is available; refreshing the app..."
+                                );
+                                // Inform the service worker to skip waiting
+                                installingWorker.postMessage({
+                                    type: "SKIP_WAITING",
+                                });
+                                // Reload the page to get the new version
+                                window.location.reload();
+                            } else {
+                                console.log(
+                                    "Content is cached for offline use."
+                                );
+                            }
+                        }
+                    };
+                };
             });
     });
 }
-
 let deferredPrompt;
 const installPromptDiv = document.getElementById("installPrompt");
 const installButton = document.getElementById("installButton");

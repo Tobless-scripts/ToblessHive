@@ -1,4 +1,3 @@
-const CACHE_NAME = "my-cache-v2"; // Update the version
 const urlsToCache = [
     "/index.html",
     "/HTML/blog.html",
@@ -55,7 +54,9 @@ const urlsToCache = [
     "/MEDIA/whatsapp-icon.EkoMrkNv.png",
     "/MEDIA/homePage2.png",
 ];
-// Install event
+const CACHE_NAME = "my-cache-v3"; // Increment this version number for updates
+
+// Install event: Cache files
 self.addEventListener("install", (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
@@ -65,7 +66,7 @@ self.addEventListener("install", (event) => {
     );
 });
 
-// Activate event (Clear old caches)
+// Activate event: Clear old caches
 self.addEventListener("activate", (event) => {
     event.waitUntil(
         caches.keys().then((cacheNames) => {
@@ -79,13 +80,21 @@ self.addEventListener("activate", (event) => {
             );
         })
     );
+    self.clients.claim(); // Take control of any open tabs immediately
 });
 
-// Fetch event
+// Fetch event: Serve from cache first, fallback to network
 self.addEventListener("fetch", (event) => {
     event.respondWith(
         caches.match(event.request).then((response) => {
             return response || fetch(event.request);
         })
     );
+});
+
+// Listen for skipWaiting to reload the app automatically
+self.addEventListener("message", (event) => {
+    if (event.data && event.data.type === "SKIP_WAITING") {
+        self.skipWaiting();
+    }
 });
