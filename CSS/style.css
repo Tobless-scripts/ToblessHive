@@ -730,3 +730,28 @@ iframe {
         font-size: 1rem;
     }
 }
+#installPrompt {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 0 35px;
+    color: #007bdf;
+    text-align: center;
+    padding: 10px;
+    z-index: 9999;
+}
+
+#installPrompt span {
+    margin-right: 10px;
+}
+
+#installButton {
+    background-color: transparent;
+    color: #333;
+    border: none;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 14px;
+}

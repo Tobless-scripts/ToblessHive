@@ -165,6 +165,26 @@
                     <p>Earn badges and points to make learning fun!</p>
                 </div>
             </section>
+            <div class="form">
+                <form id="contact-form">
+                    <input
+                        type="text"
+                        name="user_name"
+                        placeholder="Your Name"
+                    />
+                    <input
+                        type="email"
+                        name="user_email"
+                        placeholder="Your Email"
+                    />
+                    <textarea
+                        name="message"
+                        placeholder="Your Message"
+                    ></textarea>
+                    <button type="submit">Send</button>
+                </form>
+                <p class="success"></p>
+            </div>
         </main>
 
         <footer>
@@ -190,4 +210,46 @@
         </footer>
     </body>
     <script src="/JAVASCRIPT/header.js"></script>
+
+    <script src="/main.js"></script>
+
+    <script
+        type="text/javascript"
+        src="https://cdn.emailjs.com/dist/email.min.js"
+    ></script>
+    <script>
+        emailjs.init("gLYSmkZwzXwypTinl"); // Correct usage of the Public Key
+        document
+            .getElementById("contact-form")
+            .addEventListener("submit", function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Send the form data to EmailJS
+                emailjs
+                    .sendForm("service_skicb5e", "template_hz1pkbp", this)
+                    .then(
+                        function (response) {
+                            console.log(
+                                "SUCCESS!",
+                                response.status,
+                                response.text
+                            );
+                            document.getElementById("contact-form").reset();
+                            document.querySelector(".success").textContent =
+                                "Email successfully sent";
+
+                            // Clear the success message after 5 seconds
+                            setTimeout(function () {
+                                document.querySelector(".success").textContent =
+                                    "";
+                            }, 5000); // 5000ms = 5 seconds
+                        },
+                        function (error) {
+                            console.log("FAILED...", error);
+                            document.querySelector(".success").textContent =
+                                "FAILED...";
+                        }
+                    );
+            });
+    </script>
 </html>

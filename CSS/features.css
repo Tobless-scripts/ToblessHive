@@ -360,6 +360,71 @@ ul li a:hover {
     color: #007bdf;
     border: none;
 }
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    max-width: 600px;
+    margin: 2rem auto;
+    transition: all 0.3s ease-in-out;
+}
+
+.form input,
+.form select,
+.form textarea {
+    width: 100%;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+    border-color: #007bdf;
+    outline: none;
+}
+
+.form button {
+    padding: 1rem 2rem;
+    border: none;
+    background-color: #007bdf;
+    color: white;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.form button:hover {
+    background-color: #005bb5;
+}
+
+.form h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #031f42;
+}
+
+@media screen and (max-width: 576px) {
+    .form {
+        padding: 1.5rem;
+        width: 90%;
+    }
+    .form h2 {
+        font-size: 1.8rem;
+    }
+}
 
 @media screen and (max-width: 1000px) {
     .copy {

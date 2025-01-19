@@ -1,0 +1,60 @@
+{
+    "name": "Tobless Hive",
+    "short_name": "ToblessHive",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#007bdf",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/MEDIA/logo144.png",
+            "type": "image/png",
+            "sizes": "144x144",
+            "purpose": "any"
+        },
+        {
+            "src": "/MEDIA/logo192.png",
+            "type": "image/png",
+            "sizes": "167x192",
+            "purpose": "any"
+        },
+        {
+            "src": "/MEDIA/logo512.png",
+            "type": "image/png",
+            "sizes": "446x512",
+            "purpose": "any"
+        },
+        {
+            "src": "/MEDIA/logo1024.png",
+            "type": "image/png",
+            "sizes": "892x1024",
+            "purpose": "any"
+        }
+    ],
+    "description": "An app to help users learn and grow their skills.",
+    "scope": "/",
+    "id": "https://tobless-hive.vercel.app/",
+    "categories": [
+        "education",
+        "productivity",
+        "learning",
+        "education",
+        "courses",
+        "online learning",
+        "skill development"
+    ],
+    "screenshots": [
+        {
+            "src": "/MEDIA/homePage.png",
+            "type": "image/png",
+            "sizes": "1347x638",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/MEDIA/homePage.png",
+            "type": "image/png",
+            "sizes": "1347x638"
+        }
+    ]
+}
