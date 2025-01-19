@@ -268,20 +268,20 @@ ul li a:hover {
 }
 .blog-container {
     max-width: 600px;
-    margin: 15em auto;
+    margin: 5rem auto;
     background: #fff;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
 }
-h1 {
+.blog-container h1 {
     color: #ff5252;
 }
-p {
-    font-size: 18px;
+.blog-container p {
+    font-size: 1.4rem;
     line-height: 1.6;
 }
-a {
+.blog-container a {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 20px;
@@ -289,8 +289,8 @@ a {
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 1.2rem;
 }
-a:hover {
+.blog-container a:hover {
     background-color: #0056b3;
 }

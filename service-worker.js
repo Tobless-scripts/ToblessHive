@@ -1,4 +1,4 @@
-const CACHE_NAME = "Tobless-Hive-v1";
+const CACHE_NAME = "my-cache-v2"; // Update the version
 const urlsToCache = [
     "/index.html",
     "/HTML/blog.html",
@@ -55,25 +55,25 @@ const urlsToCache = [
     "/MEDIA/whatsapp-icon.EkoMrkNv.png",
     "/MEDIA/homePage2.png",
 ];
-// Install event - Cache all the assets
+// Install event
 self.addEventListener("install", (event) => {
     event.waitUntil(
         caches.open(CACHE_NAME).then((cache) => {
-            console.log("Caching assets");
+            console.log("Opened cache");
             return cache.addAll(urlsToCache);
         })
     );
 });
 
-// Activate event - Clear old caches
+// Activate event (Clear old caches)
 self.addEventListener("activate", (event) => {
-    const cacheWhitelist = [CACHE_NAME];
     event.waitUntil(
         caches.keys().then((cacheNames) => {
             return Promise.all(
-                cacheNames.map((cacheName) => {
-                    if (!cacheWhitelist.includes(cacheName)) {
-                        return caches.delete(cacheName);
+                cacheNames.map((cache) => {
+                    if (cache !== CACHE_NAME) {
+                        console.log("Deleting old cache:", cache);
+                        return caches.delete(cache);
                     }
                 })
             );
@@ -81,11 +81,11 @@ self.addEventListener("activate", (event) => {
     );
 });
 
-// Fetch event - Serve from cache or network if not cached
+// Fetch event
 self.addEventListener("fetch", (event) => {
     event.respondWith(
-        caches.match(event.request).then((cachedResponse) => {
-            return cachedResponse || fetch(event.request);
+        caches.match(event.request).then((response) => {
+            return response || fetch(event.request);
         })
     );
 });
