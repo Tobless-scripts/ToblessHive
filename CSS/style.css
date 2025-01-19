@@ -739,7 +739,7 @@ iframe {
     box-shadow: 0 0 35px;
     color: #007bdf;
     text-align: center;
-    padding: 1rem1.5rem;
+    padding: 1rem 0.5rem;
     z-index: 9999;
     gap: 3rem;
     justify-content: space-between;
