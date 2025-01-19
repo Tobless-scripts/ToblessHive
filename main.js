@@ -25,7 +25,7 @@ window.addEventListener("beforeinstallprompt", (e) => {
     deferredPrompt = e;
 
     // Show the install prompt div
-    installPromptDiv.style.display = "block";
+    installPromptDiv.style.display = "flex";
 
     // When the user clicks the install button inside the div
     installButton.addEventListener("click", () => {
@@ -39,7 +39,12 @@ window.addEventListener("beforeinstallprompt", (e) => {
             } else {
                 console.log("User dismissed the install prompt");
             }
-            deferredPrompt = null; // Clear the prompt after it's used
+
+            // Remove the install prompt div after the user has responded
+            installPromptDiv.style.display = "none";
+
+            // Clear the deferredPrompt to free up resources
+            deferredPrompt = null;
         });
     });
 });

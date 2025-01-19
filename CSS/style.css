@@ -739,14 +739,15 @@ iframe {
     box-shadow: 0 0 35px;
     color: #007bdf;
     text-align: center;
-    padding: 10px;
+    padding: 1rem1.5rem;
     z-index: 9999;
+    gap: 3rem;
+    justify-content: space-between;
+    align-items: center;
 }
-
 #installPrompt span {
     margin-right: 10px;
 }
-
 #installButton {
     background-color: transparent;
     color: #333;

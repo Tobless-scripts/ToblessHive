@@ -53,6 +53,7 @@ const urlsToCache = [
     "/MEDIA/telephone.png",
     "/MEDIA/twitter.png",
     "/MEDIA/whatsapp-icon.EkoMrkNv.png",
+    "/MEDIA/homePage2.png",
 ];
 // Install event - Cache all the assets
 self.addEventListener("install", (event) => {
