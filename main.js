@@ -25,7 +25,7 @@ window.addEventListener("beforeinstallprompt", (e) => {
     deferredPrompt = e;
 
     // Show the install prompt div
-    installPromptDiv.style.display = "block";
+    installPromptDiv.style.display = "flex";
 
     // When the user clicks the install button inside the div
     installButton.addEventListener("click", () => {
