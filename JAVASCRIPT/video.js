@@ -1,5 +1,5 @@
-const apiKey = "AIzaSyBNNfpEqDrThXLfd3D7GxywEZJ6oAZuPjw";
-let query = "Tech Development, fullstack & Design";
+const apiKey = "AIzaSyANlcpM94oqiopnHzc2zpri4S9dCFPUH0Y";
+const query = "Web development, fullstack and design";
 const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&q=${encodeURIComponent(
     query
 )}&part=snippet&type=video&maxResults=12`;
@@ -35,16 +35,18 @@ async function saveVideosToDB(videos) {
     let transaction = db.transaction("videos", "readwrite");
     let store = transaction.objectStore("videos");
 
-    videos.forEach((video) => {
-        let videoData = {
-            id: video.id.videoId,
-            title: video.snippet.title,
-            thumbnail: video.snippet.thumbnails.high.url,
-        };
-        store.put(videoData);
-    });
-
-    console.log("Videos saved to IndexedDB.");
+    // Clear old videos before saving new ones
+    store.clear().onsuccess = () => {
+        videos.forEach((video) => {
+            let videoData = {
+                id: video.id.videoId,
+                title: video.snippet.title,
+                thumbnail: video.snippet.thumbnails.high.url,
+            };
+            store.put(videoData);
+        });
+        console.log("Videos saved to IndexedDB.");
+    };
 }
 
 // Load videos from IndexedDB
@@ -66,7 +68,14 @@ async function fetchVideos() {
     try {
         if (navigator.onLine) {
             const response = await fetch(apiUrl);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
             const data = await response.json();
+            if (!data.items) {
+                throw new Error("No videos found.");
+            }
+
             await saveVideosToDB(data.items);
             displayVideos(data.items);
         } else {
@@ -81,21 +90,22 @@ async function fetchVideos() {
 
 // Display videos
 function displayVideos(videos) {
-    const container = document.getElementById("featured-video");
+    const container = document.getElementById("video-container");
     container.innerHTML = ""; // Clear previous results
+
+    console.log("Videos to be displayed:", videos);
 
     videos.forEach((video) => {
         const videoElement = document.createElement("div");
         videoElement.className = "video";
         videoElement.innerHTML = `
-            <img src="${video.thumbnail}" class="thumbnail" alt="${video.title}">
+            <img src="${video.thumbnail}" class="thumbnail" alt="${video.title}" loading="lazy">
             <iframe
                 src="https://www.youtube.com/embed/${video.id}?autoplay=1"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowfullscreen
                 style="display: none;">
             </iframe>
-            
         `;
 
         const thumbnail = videoElement.querySelector(".thumbnail");
@@ -103,9 +113,8 @@ function displayVideos(videos) {
 
         thumbnail.addEventListener("click", () => {
             if (currentIframe) {
-                currentIframe.src = currentIframe.src; // Stop previous video
+                currentIframe.remove();
                 currentThumbnail.style.display = "block";
-                currentIframe.style.display = "none";
             }
 
             thumbnail.style.display = "none";
