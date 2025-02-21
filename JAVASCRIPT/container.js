@@ -19,7 +19,7 @@ window.onscroll = function () {
     }
 };
 
-const firstVideo = document.getElementById("video-container");
+const firstVideo = document.getElementById("videoContainer");
 const secondVideo = document.getElementById("trending-video");
 const thirdVideo = document.getElementById("popular-video");
 const fourthVideo = document.getElementById("featured-video");

@@ -398,12 +398,12 @@ ul li a:hover {
 .containers {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 2rem;
     margin: 1rem auto;
     justify-content: center;
     align-items: center;
 }
-.video {
+.vid-cont video {
     width: 17.5rem;
     text-align: center;
     background: #fff;
@@ -414,7 +414,7 @@ ul li a:hover {
     padding: 1rem;
     transition: transform 0.5s ease-in-out;
 }
-.thumbnail {
+.vid-cont img {
     width: 100%;
     cursor: pointer;
     transition: all 0.5s ease-in-out;

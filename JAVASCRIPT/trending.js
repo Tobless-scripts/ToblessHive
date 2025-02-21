@@ -1,129 +1,101 @@
-const apiKey = "AIzaSyANlcpM94oqiopnHzc2zpri4S9dCFPUH0Y";
-const query = "AI/ML";
-const apiUrl = `https://www.googleapis.com/youtube/v3/search?key=${apiKey}&q=${encodeURIComponent(
-    query
-)}&part=snippet&type=video&maxResults=12`;
+const API_KEY = "3226f1b2c9mshf6dd783f21d8e63p1fac5ejsn92f2fb60dd03";
+let searchQuery = "AI/ML";
+const API_HOST = "youtube138.p.rapidapi.com";
 
-let currentIframe = null;
-let currentThumbnail = null;
+const DB_NAME = "youtubeCacheDB";
+const STORE_NAME = "videos";
 
-// Open IndexedDB
-function openDatabase() {
+async function openDB() {
     return new Promise((resolve, reject) => {
-        let request = indexedDB.open("VideoDB", 1);
+        const request = indexedDB.open(DB_NAME, 1);
 
-        request.onupgradeneeded = function (event) {
+        request.onupgradeneeded = (event) => {
             let db = event.target.result;
-            if (!db.objectStoreNames.contains("videos")) {
-                db.createObjectStore("videos", { keyPath: "id" });
+            if (!db.objectStoreNames.contains(STORE_NAME)) {
+                db.createObjectStore(STORE_NAME, { keyPath: "query" });
             }
         };
 
-        request.onsuccess = function () {
-            resolve(request.result);
-        };
-
-        request.onerror = function () {
-            reject("Error opening IndexedDB");
-        };
+        request.onsuccess = (event) => resolve(event.target.result);
+        request.onerror = (event) =>
+            reject("IndexedDB Error: " + event.target.error);
     });
 }
 
-// Save videos to IndexedDB
-async function saveVideosToDB(videos) {
-    let db = await openDatabase();
-    let transaction = db.transaction("videos", "readwrite");
-    let store = transaction.objectStore("videos");
+async function saveToDB(query, data) {
+    const db = await openDB();
+    const tx = db.transaction(STORE_NAME, "readwrite");
+    const store = tx.objectStore(STORE_NAME);
 
-    // Clear old videos before saving new ones
-    store.clear().onsuccess = () => {
-        videos.forEach((video) => {
-            let videoData = {
-                id: video.id.videoId,
-                title: video.snippet.title,
-                thumbnail: video.snippet.thumbnails.high.url,
-            };
-            store.put(videoData);
-        });
-        console.log("Videos saved to IndexedDB.");
-    };
+    store.put({ query, data, timestamp: Date.now() });
+    tx.oncomplete = () => console.log("Data saved to IndexedDB");
+    tx.onerror = (event) =>
+        console.error("IndexedDB Save Error:", event.target.error);
 }
 
-// Load videos from IndexedDB
-async function loadVideosFromDB() {
-    let db = await openDatabase();
+async function getFromDB(query, maxAge = 300000) {
+    // 5 mins cache
+    const db = await openDB();
+    const tx = db.transaction(STORE_NAME, "readonly");
+    const store = tx.objectStore(STORE_NAME);
+
     return new Promise((resolve) => {
-        let transaction = db.transaction("videos", "readonly");
-        let store = transaction.objectStore("videos");
-
-        let request = store.getAll();
-        request.onsuccess = function () {
-            resolve(request.result);
+        const request = store.get(query);
+        request.onsuccess = () => {
+            const result = request.result;
+            if (result && Date.now() - result.timestamp < maxAge) {
+                console.log("Data loaded from IndexedDB");
+                resolve(result.data);
+            } else {
+                resolve(null);
+            }
         };
+        request.onerror = () => resolve(null);
     });
 }
 
-// Fetch videos (online or offline)
 async function fetchVideos() {
-    try {
-        if (navigator.onLine) {
-            const response = await fetch(apiUrl);
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-            const data = await response.json();
-            if (!data.items) {
-                throw new Error("No videos found.");
-            }
+    // Check IndexedDB cache first
+    const cachedData = await getFromDB(searchQuery);
+    if (cachedData) return displayVideos(cachedData);
 
-            await saveVideosToDB(data.items);
-            displayVideos(data.items);
-        } else {
-            console.log("Offline: Loading videos from IndexedDB...");
-            let videos = await loadVideosFromDB();
-            displayVideos(videos);
-        }
+    const url = `https://${API_HOST}/search/?q=${searchQuery}&type=video&hl=en&gl=US`;
+
+    const options = {
+        method: "GET",
+        headers: {
+            "X-RapidAPI-Key": API_KEY,
+            "X-RapidAPI-Host": API_HOST,
+        },
+    };
+
+    try {
+        const response = await fetch(url, options);
+        if (!response.ok)
+            throw new Error(`HTTP error! Status: ${response.status}`);
+
+        const data = await response.json();
+        saveToDB(searchQuery, data); // ✅ Corrected
+        displayVideos(data);
     } catch (error) {
         console.error("Error fetching videos:", error);
+        alert(
+            "Failed to load videos. Please check your API key or internet connection."
+        );
     }
 }
 
-// Display videos
-function displayVideos(videos) {
-    const container = document.getElementById("trending-video");
-    container.innerHTML = ""; // Clear previous results
+function displayVideos(data) {
+    const videoContainer = document.getElementById("trending-video");
 
-    console.log("Videos to be displayed:", videos);
-
-    videos.forEach((video) => {
-        const videoElement = document.createElement("div");
-        videoElement.className = "video";
-        videoElement.innerHTML = `
-            <img src="${video.thumbnail}" class="thumbnail" alt="${video.title}" loading="lazy">
-            <iframe
-                src="https://www.youtube.com/embed/${video.id}?autoplay=1"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-                style="display: none;">
-            </iframe>
+    data.contents.forEach((video) => {
+        // ✅ Corrected: Use "contents" instead of "items"
+        const videoEl = document.createElement("div");
+        videoEl.className = "vid-cont";
+        videoEl.innerHTML = `
+            <img src="${video.video.thumbnails[0].url}" alt="${video.video.title}">
         `;
-
-        const thumbnail = videoElement.querySelector(".thumbnail");
-        const iframe = videoElement.querySelector("iframe");
-
-        thumbnail.addEventListener("click", () => {
-            if (currentIframe) {
-                currentIframe.remove();
-                currentThumbnail.style.display = "block";
-            }
-
-            thumbnail.style.display = "none";
-            iframe.style.display = "block";
-            currentIframe = iframe;
-            currentThumbnail = thumbnail;
-        });
-
-        container.appendChild(videoElement);
+        videoContainer.appendChild(videoEl);
     });
 }
 
