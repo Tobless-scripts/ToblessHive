@@ -451,10 +451,10 @@ iframe {
         width: 100%;
     }
     .general-course {
-        padding: 3rem;
+        padding: 3rem 1.5rem;
     }
     .video {
-        min-width: 20rem;
+        min-width: 25rem;
         padding: 0 2rem;
     }
 }

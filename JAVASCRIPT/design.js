@@ -1,5 +1,5 @@
 const API_KEY = "3226f1b2c9mshf6dd783f21d8e63p1fac5ejsn92f2fb60dd03";
-let searchQuery = "Backend development";
+let searchQuery = "UI/UX Design, Design";
 const API_HOST = "youtube138.p.rapidapi.com";
 
 const DB_NAME = "youtubeCacheDB";
@@ -86,7 +86,7 @@ async function fetchVideos() {
 }
 
 function displayVideos(data) {
-    const videoContainer = document.getElementById("featured-video");
+    const videoContainer = document.getElementById("design-video");
     let currentPlayingVideo = null;
 
     data.contents.forEach((video) => {

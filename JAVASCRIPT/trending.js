@@ -75,6 +75,7 @@ async function fetchVideos() {
             throw new Error(`HTTP error! Status: ${response.status}`);
 
         const data = await response.json();
+        console.log(data);
         saveToDB(searchQuery, data); // ✅ Corrected
         displayVideos(data);
     } catch (error) {
@@ -87,14 +88,42 @@ async function fetchVideos() {
 
 function displayVideos(data) {
     const videoContainer = document.getElementById("trending-video");
+    let currentPlayingVideo = null;
 
     data.contents.forEach((video) => {
-        // ✅ Corrected: Use "contents" instead of "items"
         const videoEl = document.createElement("div");
         videoEl.className = "vid-cont";
-        videoEl.innerHTML = `
-            <img src="${video.video.thumbnails[0].url}" alt="${video.video.title}">
-        `;
+
+        // Create thumbnail
+        const imgEl = document.createElement("img");
+        imgEl.src = video.video.thumbnails[0].url;
+        imgEl.alt = "Video thumbnail";
+
+        // Create iframe for video
+        const iframe = document.createElement("iframe");
+        iframe.src = `https://www.youtube.com/embed/${video.videoId}`;
+        iframe.frameBorder = "0";
+        iframe.allowFullscreen = true;
+        iframe.className = "vid-player";
+        iframe.style.display = "none"; // Initially hidden
+
+        // Click event for thumbnail
+        imgEl.addEventListener("click", () => {
+            if (currentPlayingVideo) {
+                currentPlayingVideo.remove(); // Remove previous video
+                previousThumbnail.style.display = "block"; // Show previous thumbnail
+            }
+
+            imgEl.style.display = "none"; // Hide thumbnail
+            imgEl.parentElement.appendChild(iframe); // Show video
+
+            currentPlayingVideo = iframe;
+            previousThumbnail = imgEl;
+        });
+
+        videoEl.appendChild(imgEl);
+        videoEl.appendChild(iframe);
+
         videoContainer.appendChild(videoEl);
     });
 }
