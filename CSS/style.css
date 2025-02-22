@@ -737,9 +737,7 @@ iframe {
     }
 }
 #installPrompt {
-    position: fixed;
-    top: 0;
-    left: 0;
+    display: flex;
     width: 100%;
     background-color: white;
     box-shadow: 0 0 35px;
@@ -749,6 +747,7 @@ iframe {
     z-index: 9999;
     gap: 3rem;
     justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
 }
 #installPrompt span {
